@@ -1,0 +1,16 @@
+<html>
+
+<body>
+
+    teest
+    <script>
+    window.onload = function(){
+        alert('yo');
+        chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+            console.log(response.farewell);
+        });
+        console.log("test");
+    }
+    </script>
+</body>
+</html>
