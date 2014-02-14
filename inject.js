@@ -1,7 +1,16 @@
 
 
-var bothloaded = 0;
+var firebaseRef = new Firebase('https://pandoragen.firebaseio.com/');
 
+var me = firebaseRef.push();
+
+var stationRef;
+//me.push({name: "testname3", text: "testtext3"});
+
+
+var lastSong = "";
+var lastArtist = "";
+var lastStation = "";
 
 window.setInterval(function(){
 	run();
@@ -9,8 +18,20 @@ window.setInterval(function(){
 
 
 function run(){
-	console.log( "song: " + getElement("playerBarSong").innerHTML);
-	console.log( "artist: " + getElement("playerBarArtist").innerHTML);
+  var songname = getElement("playerBarSong").innerHTML;
+  var artistname = getElement("playerBarArtist").innerHTML;
+  var stationname = getElement("stationChangeSelectorNoMenu").children[0].innerHTML;
+
+	//console.log( "song: " + songname);
+	//console.log( "artist: " + artistname);
+
+  if(songname != lastSong || artistname != lastArtist || stationname != lastStation){
+    stationRef = me.child(stationname);
+    lastSong = songname;
+    lastArtist = artistname;
+    lastStation = stationname;
+    stationRef.push({song: songname, artist: artistname});
+  }
 
 	//console.log(chrome.extension.getViews({type: "popup"})[0].innerHTML);
 	//console.log(chrome.extension);

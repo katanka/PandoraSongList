@@ -11,7 +11,7 @@
   "content_scripts": [
     {
         "matches": ["http://www.pandora.com/*", "https://www.pandora.com/*"],
-        "js": ["inject.js"]
+        "js": ["firebase.js", "inject.js"]
     }
 	]
   //"web_accessible_resources": ["pandoragen.js"]
